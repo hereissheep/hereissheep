@@ -2,14 +2,14 @@
 
 {% block body %}
 
-    <form action="">
+    {{ form_start(search_form) }}
         <div class="input-group input-group-lg">
-            <input class="form-control" type="text" placeholder="What you are looking for?"/>
+            {{ form_widget(search_form.search, { attr: { class: 'form-control' } }) }}
             <span class="input-group-btn">
-                <button class="btn btn-primary" type="submit">Search</button>
+                {{ form_widget(search_form.submit, { attr: { class: 'btn btn-primary' } }) }}
             </span>
         </div>
-    </form>
+    {{ form_end(search_form) }}
 
     <hr/>
 
