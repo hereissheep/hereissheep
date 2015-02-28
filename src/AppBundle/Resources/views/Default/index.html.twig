@@ -2,14 +2,14 @@
 
 {% block body %}
 
-    <form action="">
+    {{ form_start(search_form) }}
         <div class="input-group input-group-lg">
-            <input class="form-control" type="text" placeholder="What you are looking for?"/>
+            {{ form_widget(search_form.search, { attr: { class: 'form-control' } }) }}
             <span class="input-group-btn">
-                <button class="btn btn-primary" type="submit">Search</button>
+                {{ form_widget(search_form.submit, { attr: { class: 'btn btn-primary' } }) }}
             </span>
         </div>
-    </form>
+    {{ form_end(search_form) }}
 
     <hr/>
 
@@ -24,18 +24,19 @@
             <header class="page-header">
                 <h3 class="panel-title">Sign up</h3>
             </header>
-            <form action="">
+
+            {{ form_start(signup_form) }}
                 <div class="form-group">
-                    <input class="form-control" type="text" placeholder="Full name"/>
+                    {{ form_widget(signup_form.username) }}
                 </div>
                 <div class="form-group">
-                    <input class="form-control" type="text" placeholder="E-mail"/>
+                    {{ form_widget(signup_form.email) }}
                 </div>
                 <div class="form-group">
-                    <input class="form-control" type="text" placeholder="Password"/>
+                    {{ form_widget(signup_form.password) }}
                 </div>
-                <a class="btn btn-block btn-success" href="">Sign up</a>
-            </form>
+            {{ form_end(signup_form) }}
+
         </div>
     </div>
 
