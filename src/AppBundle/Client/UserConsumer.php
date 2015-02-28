@@ -22,7 +22,7 @@ class UserConsumer extends ApiConsumer
      */
     public function getUser($id)
     {
-        $userJson = $this->getJsonData('dev.api.hereissheep.com/user/' . $id, 'get');
+        $userJson = $this->handleApi('dev.api.hereissheep.com/user/' . $id, 'get');
         return $this->getSerializer()->deserialize($userJson, User::class, 'json');
     }
 
