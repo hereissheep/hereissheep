@@ -8,16 +8,16 @@
 
 namespace ApiBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Doctrine\Common\Collections\ArrayCollection;
 
 class Product
 {
 
     /**
      * @ORM\Id
-     * @ORM\Column(type="bigint", name="id_product")
+     * @ORM\Column(type="bigint", name="product_id")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
@@ -30,8 +30,8 @@ class Product
     /**
      * @var Category
      *
-     * @ORM\ManyToOne(targetEntity="Category", mappedBy="Category")
-     * @ORM\JoinColumn(name="category_id", referencedColumnName="category")
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="category")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="product_id")
      */
     protected $category;
 
@@ -45,13 +45,13 @@ class Product
     /**
      * @var Location
      *
-     * @ORM\OneToOne(targetEntity="Location", mappedBy="Location")
-     * @ORM\JoinColumn(name="location_id", referencedColumnName="location")
+     * @ORM\OneToOne(targetEntity="Location", mappedBy="location")
+     * @ORM\JoinColumn(name="location_id", referencedColumnName="product_id")
      */
     protected $location;
 
     /**
-     * @ORM\Column(type="date", name="date_post")
+     * @ORM\Column(type="date", name="date")
      */
     protected $date;
 
@@ -176,8 +176,6 @@ class Product
     {
         $this->price = $price;
     }
-
-    
 
 
 }
