@@ -5,7 +5,7 @@ namespace ApiBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class ProductController extends Controller
+class CategoryController extends Controller
 {
     /**
      * @ApiDoc{

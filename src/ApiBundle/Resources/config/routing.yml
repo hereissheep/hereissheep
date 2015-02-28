@@ -1,4 +1,39 @@
-api_Product:
+api_ProductCreate:
     path:     /{product}
-    defaults: { _controller: ApiBundle:Product:index }
+    defaults: { _controller: ApiBundle:Product:create }
+
+api_ProductSearch:
+    path:     /{name}
+    defaults: { _controller: ApiBundle:Product:search }
     
+api_ProductListAll:
+    path:     /list/{category}
+    defaults: { _controller: ApiBundle:Product:listAll }
+    
+    
+
+api_CategoryCreate:
+    path:     /{category}
+    defaults: { _controller: ApiBundle:Category:create }
+
+api_CategorySearch:
+    path:     /{name}
+    defaults: { _controller: ApiBundle:Category:search }
+    
+api_CategoryListAll:
+    path:     /list
+    defaults: { _controller: ApiBundle:Category:listAll }
+    
+    
+
+api_PeopleCreate:
+    path:     /{people}
+    defaults: { _controller: ApiBundle:People:create }
+
+api_PeopleSearch:
+    path:     /{name}
+    defaults: { _controller: ApiBundle:People:search }
+    
+api_PeopleListAll:
+    path:     /list
+    defaults: { _controller: ApiBundle:People:listAll }
