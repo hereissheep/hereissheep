@@ -3,12 +3,12 @@
  * Created by PhpStorm.
  * User: root
  * Date: 28/02/15
- * Time: 15:36
+ * Time: 16:15
  */
 
 namespace AppBundle\Client;
 
 
-class Client {
+class UserConsumer {
 
 }
