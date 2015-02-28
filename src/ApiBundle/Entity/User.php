@@ -13,6 +13,11 @@ class User
 {
 
     /**
-     * @ORM\
+     * @ORM\Id
+     * @ORM\Column(type="bigint", name="id")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
+    protected $id;
+
+
 }

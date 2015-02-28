@@ -17,7 +17,7 @@ class Product
 
     /**
      * @ORM\Id
-     * @ORM\Column(type="bigint", name="id_product")
+     * @ORM\Column(type="bigint", name="user_id")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
@@ -177,7 +177,7 @@ class Product
         $this->price = $price;
     }
 
-    
+
 
 
 }
