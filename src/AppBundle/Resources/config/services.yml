@@ -2,3 +2,6 @@ services:
 #    app.example:
 #        class: AppBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]
+    user_consumer:
+        class: AppBundle\Client\UserConsumer
+        arguments: [@jms_serializer]
