@@ -35,3 +35,6 @@
 
 ### Vagrant ###
 .vagrant/
+
+### PhpStorm ###
+.idea
