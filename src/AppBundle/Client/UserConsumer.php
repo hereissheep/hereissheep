@@ -26,4 +26,12 @@ class UserConsumer extends ApiConsumer
         return $this->getSerializer()->deserialize($userJson, User::class, 'json');
     }
 
+    public function saveUser(User $user)
+    {
+        $userJson = $this->getSerializer()->serialize($user, 'json');
+        $this->handleApi('dev.api.hereissheep.com/user/', 'post', $userJson);
+
+        return $user;
+    }
+
 }

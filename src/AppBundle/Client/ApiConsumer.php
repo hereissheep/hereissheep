@@ -32,7 +32,7 @@ abstract class ApiConsumer implements Consumable
      * @param string $method
      * @return string|array
      */
-    public function handleApi($url, $method)
+    public function handleApi($url, $method, $data = null)
     {
         $method = strtolower($method);
 

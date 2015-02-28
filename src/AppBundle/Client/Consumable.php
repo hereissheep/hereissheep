@@ -8,5 +8,5 @@ namespace AppBundle\Client;
 
 interface Consumable
 {
-    public function handleApi($url, $method);
+    public function handleApi($url, $method, $data);
 }
