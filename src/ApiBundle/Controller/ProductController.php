@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use \ApiBundle\Entity\Product;
 
 
 class ProductController extends Controller
@@ -22,7 +23,7 @@ class ProductController extends Controller
      */
     public function createAction(Request $request)
     {
-        die('teste');
+        $entity = new Product();
         return new Response($this->get('jms_serializer')->serialize($entity, $request->get('_format')));
     }
     
@@ -38,6 +39,7 @@ class ProductController extends Controller
      */
     public function updateAction(Request $request)
     {
+        $entity = new Product();
         return new Response($this->get('jms_serializer')->serialize($entity, $request->get('_format')));
     }
     
@@ -53,7 +55,8 @@ class ProductController extends Controller
      */
     public function viewAction(Request $request)
     {
-                
+        $entity = new Product();
+        
         return new Response($this->get('jms_serializer')->serialize($entity, $request->get('_format')));
     }
     
@@ -69,6 +72,7 @@ class ProductController extends Controller
      */
     public function searchAction(Request $request)
     {
+        $entity = new Product();
         return new Response($this->get('jms_serializer')->serialize($entity, $request->get('_format')));
     }
     
@@ -84,6 +88,7 @@ class ProductController extends Controller
      */
     public function listAction(Request $request)
     {
+        $entity = new Product();
         return new Response($this->get('jms_serializer')->serialize($entity, $request->get('_format')));
     }
     
@@ -99,6 +104,7 @@ class ProductController extends Controller
      */
     public function listByCategoryAction(Request $request)
     {
+        $entity = new Product();
         return new Response($this->get('jms_serializer')->serialize($entity, $request->get('_format')));
     }
 }

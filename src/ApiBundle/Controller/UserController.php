@@ -4,7 +4,10 @@ namespace ApiBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use \ApiBundle\Entity\User;
+
 
 class UserController extends Controller
 {
@@ -20,6 +23,7 @@ class UserController extends Controller
      */
     public function createAction(Request $request)
     {
+        $entity = new User();
         return new Response($this->get('jms_serializer')->serialize($entity, $request->get('_format')));
     }
     
@@ -35,6 +39,7 @@ class UserController extends Controller
      */
     public function updateAction(Request $request)
     {
+        $entity = new User();
         return new Response($this->get('jms_serializer')->serialize($entity, $request->get('_format')));
     }
     
@@ -50,6 +55,10 @@ class UserController extends Controller
      */
     public function viewAction(Request $request)
     {
+        
+        $entity = new User();
+        
+        
         return new Response($this->get('jms_serializer')->serialize($entity, $request->get('_format')));
     }
     
@@ -65,6 +74,7 @@ class UserController extends Controller
      */
     public function searchAction(Request $request)
     {
+        $entity = new User();
         return new Response($this->get('jms_serializer')->serialize($entity, $request->get('_format')));
     }
     
@@ -80,6 +90,7 @@ class UserController extends Controller
      */
     public function listAction(Request $request)
     {
+        $entity = new User();
         return new Response($this->get('jms_serializer')->serialize($entity, $request->get('_format')));
     }
 }
