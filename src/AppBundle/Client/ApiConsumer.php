@@ -5,7 +5,7 @@
 
 namespace AppBundle\Client;
 
-use Guzzle\Http\Client;
+use GuzzleHttp\Client;
 use JMS\Serializer\Serializer;
 
 abstract class ApiConsumer implements Consumable
@@ -36,8 +36,9 @@ abstract class ApiConsumer implements Consumable
     {
         $method = strtolower($method);
 
-        $request = $this->client->$method($url);
-        $response = $this->client->send($request);
+        $response = $this->client->$method($url, [
+            'headers' => ['content-type' => 'application/json']
+        ]);
 
         return $response->json();
     }

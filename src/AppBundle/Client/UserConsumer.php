@@ -16,11 +16,15 @@ class UserConsumer extends ApiConsumer
         parent::__construct($serializer);
     }
 
-    public function getUserEntity($url, $method)
+    /**
+     * @param $url
+     * @param $method
+     * @return mixed
+     */
+    public function sendApiRequest($url, $method)
     {
         $userJson = $this->getJsonData($url, $method);
-        $user = $this->getSerializer()->deserialize($userJson, User::class, 'json');
-        dump($user);exit;
+        return $this->getSerializer()->deserialize($userJson, User::class, 'json');
     }
 
 }

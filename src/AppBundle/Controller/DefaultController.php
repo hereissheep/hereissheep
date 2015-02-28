@@ -10,7 +10,7 @@ class DefaultController extends Controller
     public function indexAction()
     {
         $user = new UserConsumer($this->get('jms_serializer'));
-//        $user->getUserEntity('http://httpbin.org/get', 'get');
+        $user->sendApiRequest('http://httpbin.org/get', 'get');
         return $this->render('AppBundle:Default:index.html.twig');
     }
 }
