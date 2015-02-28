@@ -17,13 +17,12 @@ class UserConsumer extends ApiConsumer
     }
 
     /**
-     * @param $url
-     * @param $method
-     * @return mixed
+     * @param integer $id
+     * @return User
      */
-    public function sendApiRequest($url, $method)
+    public function getUser($id)
     {
-        $userJson = $this->getJsonData($url, $method);
+        $userJson = $this->getJsonData('dev.api.hereissheep.com/user/' . $id, 'get');
         return $this->getSerializer()->deserialize($userJson, User::class, 'json');
     }
 
