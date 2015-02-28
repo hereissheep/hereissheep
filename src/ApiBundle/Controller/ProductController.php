@@ -4,6 +4,7 @@ namespace ApiBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 class ProductController extends Controller
 {
@@ -19,14 +20,15 @@ class ProductController extends Controller
      */
     public function createAction(Request $request)
     {
+        die('teste');
         return $this->get('jms_serializer')->serialize($entity, $request->getFormat('_format'));
     }
     
     /**
      * @ApiDoc{
      *  statusCodes ={
-     *      200 = "",
-     *      404 = ""
+     *      200 = "Sucess",
+     *      404 = "Erro"
      *  }
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return type
@@ -39,10 +41,10 @@ class ProductController extends Controller
     
     /**
      * @ApiDoc{
-     *  statusCodes ={
+     *  statusCodes = {
      *      200 = "",
      *      404 = ""
-     *  }
+     * }
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return type
      * }
