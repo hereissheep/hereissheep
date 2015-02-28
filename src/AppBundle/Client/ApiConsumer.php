@@ -36,6 +36,10 @@ abstract class ApiConsumer implements Consumable
     {
         $method = strtolower($method);
 
+        if (!in_array($method, $this->getValidMethods())) {
+            throw new \BadMethodCallException('Attempted to call invalid method: ' . $method);
+        }
+
         $response = $this->client->$method($url, [
             'headers' => ['content-type' => 'application/json']
         ]);
@@ -57,5 +61,12 @@ abstract class ApiConsumer implements Consumable
     protected function getSerializer()
     {
         return $this->serializer;
+    }
+
+    private function getValidMethods()
+    {
+        return [
+            'get', 'post', 'delete', 'put'
+        ];
     }
 }
