@@ -1,14 +1,12 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: root
- * Date: 28/02/15
- * Time: 15:34
+ * @author Jean <jean.angelis@gmail.com>
  */
 
 namespace AppBundle\Client;
 
 
-class Consumable {
-
+interface Consumable
+{
+    public function getData($url, $method);
 }

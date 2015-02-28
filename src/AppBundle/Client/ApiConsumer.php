@@ -19,9 +19,18 @@ abstract class ApiConsumer implements Consumable
         $this->client = new Client();
     }
 
-    public function getData($method)
+    /**
+     * You should pass a valid method like get, post or delete
+     *
+     * @param string $method
+     */
+    public function getData($url, $method)
     {
+        $method = strtolower($method);
 
+        $request = $this->client->$method($url);
+        $response = $this->client->send($request);
+        dump($response->json());exit;
     }
 
     /**

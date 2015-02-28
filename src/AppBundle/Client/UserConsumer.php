@@ -1,14 +1,15 @@
 <?php
+
 /**
- * Created by PhpStorm.
- * User: root
- * Date: 28/02/15
- * Time: 16:15
+ * @author Jean <jean.angelis@gmail.com>
  */
 
 namespace AppBundle\Client;
 
-
-class UserConsumer {
-
+class UserConsumer extends ApiConsumer
+{
+    public function __construct()
+    {
+        parent::__construct();
+    }
 }
