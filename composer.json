@@ -24,7 +24,7 @@
     "incenteev/composer-parameter-handler": "~2.0",
     "easyframework/collections": "~4.0@dev",
     "jms/serializer-bundle": "~0.13",
-    "guzzle/guzzle": "~3.9",
+    "guzzlehttp/guzzle": "5.2.0",
     "nelmio/api-doc-bundle": "@stable"
   },
   "require-dev": {
