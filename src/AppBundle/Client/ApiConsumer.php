@@ -32,7 +32,7 @@ abstract class ApiConsumer implements Consumable
      * @param string $method
      * @return string|array
      */
-    public function getJsonData($url, $method)
+    public function handleApi($url, $method)
     {
         $method = strtolower($method);
 
