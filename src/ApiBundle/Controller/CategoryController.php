@@ -20,7 +20,7 @@ class CategoryController extends Controller
      */
     public function createAction(Request $request)
     {
-        return $this->get('jms_serializer')->serialize($entity, $request->getFormat('_format'));
+        return new Response($this->get('jms_serializer')->serialize($entity, $request->get('_format')));
     }
     
     /**
@@ -35,7 +35,7 @@ class CategoryController extends Controller
      */
     public function updateAction(Request $request)
     {
-        return $this->get('jms_serializer')->serialize($entity, $request->getFormat('_format'));
+        return new Response($this->get('jms_serializer')->serialize($entity, $request->get('_format')));
     }
     
     /**
@@ -50,7 +50,7 @@ class CategoryController extends Controller
      */
     public function viewAction(Request $request)
     {
-        return $this->get('jms_serializer')->serialize($entity, $request->getFormat('_format'));
+        return new Response($this->get('jms_serializer')->serialize($entity, $request->get('_format')));
     }
     
     /**
@@ -65,7 +65,7 @@ class CategoryController extends Controller
      */
     public function searchAction(Request $request)
     {
-        return $this->get('jms_serializer')->serialize($entity, $request->getFormat('_format'));
+        return new Response($this->get('jms_serializer')->serialize($entity, $request->get('_format')));
     }
     
     /**
@@ -80,6 +80,6 @@ class CategoryController extends Controller
      */
     public function listAction(Request $request)
     {
-        return $this->get('jms_serializer')->serialize($entity, $request->getFormat('_format'));
+        return new Response($this->get('jms_serializer')->serialize($entity, $request->get('_format')));
     }
 }

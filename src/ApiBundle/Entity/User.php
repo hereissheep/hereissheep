@@ -8,7 +8,7 @@
 
 namespace ApiBundle\Entity;
 
-
+use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
@@ -27,19 +27,17 @@ class User
     protected $id;
 
     /**
-     * @ORM\userName
-     * @ORM\Column(type="string", mane="name")
+     * @ORM\Column(type="string", name="name")
      */
     protected $username;
 
     /**
-     * @ORM\password
+     * 
      * @ORM\Column(type="string", name="password")
      */
     protected $password;
 
     /**
-     * @ORM\email
      * @ORM\Column(type="string", name="email")
      */
     protected $email;

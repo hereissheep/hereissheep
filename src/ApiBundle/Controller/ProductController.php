@@ -4,7 +4,9 @@ namespace ApiBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+
 
 class ProductController extends Controller
 {
@@ -21,7 +23,7 @@ class ProductController extends Controller
     public function createAction(Request $request)
     {
         die('teste');
-        return $this->get('jms_serializer')->serialize($entity, $request->getFormat('_format'));
+        return new Response($this->get('jms_serializer')->serialize($entity, $request->get('_format')));
     }
     
     /**
@@ -36,7 +38,7 @@ class ProductController extends Controller
      */
     public function updateAction(Request $request)
     {
-        return $this->get('jms_serializer')->serialize($entity, $request->getFormat('_format'));
+        return new Response($this->get('jms_serializer')->serialize($entity, $request->get('_format')));
     }
     
     /**
@@ -51,7 +53,8 @@ class ProductController extends Controller
      */
     public function viewAction(Request $request)
     {
-        return $this->get('jms_serializer')->serialize($entity, $request->getFormat('_format'));
+                
+        return new Response($this->get('jms_serializer')->serialize($entity, $request->get('_format')));
     }
     
     /**
@@ -66,7 +69,7 @@ class ProductController extends Controller
      */
     public function searchAction(Request $request)
     {
-        return $this->get('jms_serializer')->serialize($entity, $request->getFormat('_format'));
+        return new Response($this->get('jms_serializer')->serialize($entity, $request->get('_format')));
     }
     
     /**
@@ -81,7 +84,7 @@ class ProductController extends Controller
      */
     public function listAction(Request $request)
     {
-        return $this->get('jms_serializer')->serialize($entity, $request->getFormat('_format'));
+        return new Response($this->get('jms_serializer')->serialize($entity, $request->get('_format')));
     }
     
     /**
@@ -96,6 +99,6 @@ class ProductController extends Controller
      */
     public function listByCategoryAction(Request $request)
     {
-        return $this->get('jms_serializer')->serialize($entity, $request->getFormat('_format'));
+        return new Response($this->get('jms_serializer')->serialize($entity, $request->get('_format')));
     }
 }
