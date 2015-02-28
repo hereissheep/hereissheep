@@ -6,3 +6,6 @@ api:
     resource: "@ApiBundle/Resources/config/routing.yml"
     host: api.hereissheep.com
 
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/docs
