@@ -32,6 +32,36 @@ class CategoryController extends Controller
      * @return type
      * }
      */
+    public function updateAction(Request $request)
+    {
+        return $this->get('jms_serializer')->serialize($entity, $request->getFormat('_format'));
+    }
+    
+    /**
+     * @ApiDoc{
+     *  statusCodes ={
+     *      200 = "",
+     *      404 = ""
+     *  }
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @return type
+     * }
+     */
+    public function viewAction(Request $request)
+    {
+        return $this->get('jms_serializer')->serialize($entity, $request->getFormat('_format'));
+    }
+    
+    /**
+     * @ApiDoc{
+     *  statusCodes ={
+     *      200 = "",
+     *      404 = ""
+     *  }
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @return type
+     * }
+     */
     public function searchAction(Request $request)
     {
         return $this->get('jms_serializer')->serialize($entity, $request->getFormat('_format'));
@@ -47,7 +77,7 @@ class CategoryController extends Controller
      * @return type
      * }
      */
-    public function listAllAction(Request $request)
+    public function listAction(Request $request)
     {
         return $this->get('jms_serializer')->serialize($entity, $request->getFormat('_format'));
     }

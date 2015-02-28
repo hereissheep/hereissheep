@@ -1,39 +1,81 @@
-api_ProductCreate:
-    path:     /{product}
+api_product_create:
+    path:     /product
     defaults: { _controller: ApiBundle:Product:create }
-
-api_ProductSearch:
-    path:     /{name}
+    methods: [POST]
+    
+api_product_update:
+    path:     /product/{id}
+    defaults: { _controller: ApiBundle:Product:update }
+    methods: [PUT]
+    
+api_product_view:
+    path:     /product/{id}
+    defaults: { _controller: ApiBundle:Product:view }
+    methods: [GET]
+    
+api_product_search:
+    path:     /product/search/{name}
     defaults: { _controller: ApiBundle:Product:search }
+    methods: [GET]
     
-api_ProductListAll:
-    path:     /list/{category}
-    defaults: { _controller: ApiBundle:Product:listAll }
+api_product_list_all:
+    path:     /products
+    defaults: { _controller: ApiBundle:Product:list }
+    methods: [GET]
     
-    
+api_product_list_by_category:
+    path:     /products/category/{category}
+    defaults: { _controller: ApiBundle:Product:listByCategory }
+    methods: [GET]
 
-api_CategoryCreate:
-    path:     /{category}
+
+
+api_category_create:
+    path:     /category
     defaults: { _controller: ApiBundle:Category:create }
+    methods: [POST]
+    
+api_category_update:
+    path:     /category/{id}
+    defaults: { _controller: ApiBundle:Category:update }
+    methods: [PUT]
+    
+api_category_view:
+    path:     /category/{id}
+    defaults: { _controller: ApiBundle:Category:view }
+    methods: [GET]
 
-api_CategorySearch:
-    path:     /{name}
+api_category_search:
+    path:     /category/search/{name}
     defaults: { _controller: ApiBundle:Category:search }
+    methods: [GET]
     
-api_CategoryListAll:
-    path:     /list
-    defaults: { _controller: ApiBundle:Category:listAll }
+api_category_list_all:
+    path:     /categorys
+    defaults: { _controller: ApiBundle:Category:list }
     
     
 
-api_PeopleCreate:
-    path:     /{people}
-    defaults: { _controller: ApiBundle:People:create }
-
-api_PeopleSearch:
-    path:     /{name}
-    defaults: { _controller: ApiBundle:People:search }
+api_user_create:
+    path:     /user
+    defaults: { _controller: ApiBundle:Category:create }
+    methods: [POST]
     
-api_PeopleListAll:
-    path:     /list
-    defaults: { _controller: ApiBundle:People:listAll }
+api_user_update:
+    path:     /user/{id}
+    defaults: { _controller: ApiBundle:Category:update }
+    methods: [PUT]
+    
+api_user_view:
+    path:     /user/{id}
+    defaults: { _controller: ApiBundle:Category:view }
+    methods: [GET]
+
+api_user_search:
+    path:     /user/search/{name}
+    defaults: { _controller: ApiBundle:Category:search }
+    methods: [GET]
+    
+api_user_list_all:
+    path:     /users
+    defaults: { _controller: ApiBundle:Category:list }

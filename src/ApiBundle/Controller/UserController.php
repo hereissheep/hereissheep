@@ -5,7 +5,7 @@ namespace ApiBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class PeopleController extends Controller
+class UserController extends Controller
 {
     /**
      * @ApiDoc{
@@ -18,6 +18,36 @@ class PeopleController extends Controller
      * }
      */
     public function createAction(Request $request)
+    {
+        return $this->get('jms_serializer')->serialize($entity, $request->getFormat('_format'));
+    }
+    
+    /**
+     * @ApiDoc{
+     *  statusCodes ={
+     *      200 = "",
+     *      404 = ""
+     *  }
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @return type
+     * }
+     */
+    public function updateAction(Request $request)
+    {
+        return $this->get('jms_serializer')->serialize($entity, $request->getFormat('_format'));
+    }
+    
+    /**
+     * @ApiDoc{
+     *  statusCodes ={
+     *      200 = "",
+     *      404 = ""
+     *  }
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @return type
+     * }
+     */
+    public function viewAction(Request $request)
     {
         return $this->get('jms_serializer')->serialize($entity, $request->getFormat('_format'));
     }
@@ -47,7 +77,7 @@ class PeopleController extends Controller
      * @return type
      * }
      */
-    public function listAllAction(Request $request)
+    public function listAction(Request $request)
     {
         return $this->get('jms_serializer')->serialize($entity, $request->getFormat('_format'));
     }
