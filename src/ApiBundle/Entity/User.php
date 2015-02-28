@@ -9,6 +9,8 @@
 namespace ApiBundle\Entity;
 
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 class User
 {
 
@@ -23,7 +25,7 @@ class User
      * @ORM\userName
      * @ORM\Column(type="string", mane="name")
      */
-    protected $userName;
+    protected $username;
 
     /**
      * @ORM\password
@@ -36,6 +38,17 @@ class User
      * @ORM\Column(type="string", name="email")
      */
     protected $email;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="Product", mappedBy="users")
+     **/
+    protected $products;
+
+    public function __construct()
+    {
+        $this->products = new ArrayCollection();
+    }
 
     /**
      * @return mixed
@@ -56,17 +69,17 @@ class User
     /**
      * @return mixed
      */
-    public function getUserName()
+    public function getUsername()
     {
-        return $this->userName;
+        return $this->username;
     }
 
     /**
-     * @param mixed $userName
+     * @param mixed $username
      */
-    public function setUserName($userName)
+    public function setUsername($username)
     {
-        $this->userName = $userName;
+        $this->username = $username;
     }
 
     /**
@@ -101,7 +114,21 @@ class User
         $this->email = $email;
     }
 
-    
+    /**
+     * @return mixed
+     */
+    public function getProducts()
+    {
+        return $this->products;
+    }
 
+    /**
+     * @param mixed $products
+     */
+    public function setProducts($products)
+    {
+        $this->products = $products;
+        return $this;
+    }
 
 }
