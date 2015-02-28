@@ -1,0 +1,165 @@
+html,
+body,
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+button {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	background: none;
+	font-size: 100%;
+	vertical-align: baseline;
+	font-family: inherit;
+	color: inherit;
+	-webkit-appearance: none;
+	/*-moz-appearance: none;*/
+	-ms-appearance: none;
+	-o-appearance: none;
+	appearance: none;
+}
+
+body {
+	font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	line-height: 1.4em;
+	background: #eaeaea url('bg.png');
+	color: #4d4d4d;
+	width: 550px;
+	margin: 0 auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-font-smoothing: antialiased;
+	-ms-font-smoothing: antialiased;
+	-o-font-smoothing: antialiased;
+	font-smoothing: antialiased;
+}
+
+#todoapp {
+	background: #fff;
+	background: rgba(255, 255, 255, 0.9);
+	margin: 130px 0 40px 0;
+	border: 1px solid #ccc;
+	position: relative;
+	border-top-left-radius: 2px;
+	border-top-right-radius: 2px;
+	box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2),
+				0 25px 50px 0 rgba(0, 0, 0, 0.15);
+}
+#todoapp input::-webkit-input-placeholder {
+	font-style: italic;
+}
+
+#todoapp input::-moz-placeholder {
+	font-style: italic;
+	color: #a9a9a9;
+}
+
+#todoapp h1 {
+	position: absolute;
+	top: -120px;
+	width: 100%;
+	font-size: 70px;
+	font-weight: bold;
+	text-align: center;
+	color: #b3b3b3;
+	color: rgba(255, 255, 255, 0.3);
+	text-shadow: -1px -1px rgba(0, 0, 0, 0.2);
+	-webkit-text-rendering: optimizeLegibility;
+	-moz-text-rendering: optimizeLegibility;
+	-ms-text-rendering: optimizeLegibility;
+	-o-text-rendering: optimizeLegibility;
+	text-rendering: optimizeLegibility;
+}
+
+#todoapp a {
+    font-weight: normal;
+    text-decoration: none;
+    color: #b83f45;
+}
+#todoapp a:hover {
+    text-decoration: underline;
+    color: #787e7e;
+}
+
+#todoapp > table {
+    border-spacing: 0;
+    border-collapse: collapse;
+    width: 100%;
+    padding: 10px 10px 4em 10px;
+    border-bottom: 1px solid rgba( 0, 0, 0, .3 );
+}
+#todoapp > table thead {
+    background: rgba( 0, 0, 0, .15 );
+}
+#todoapp > table td,
+#todoapp > table th {
+    padding: 10px 5px;
+}
+#todoapp > table th {
+    width: 25%;
+    border-bottom: 1px solid rgba( 0, 0, 0, .2 );
+}
+#todoapp > table tbody tr:hover {
+    background: rgba( 0, 0, 0, .05 );
+    cursor: pointer;
+}
+#todoapp > table tbody tr.completed td {
+    text-decoration: line-through;
+}
+
+#todoapp > table td {
+    text-align: center;
+}
+#todoapp > table ul {
+    list-style: none;
+    margin-left: 32px;
+}
+#todoapp > table ul li {
+    float: left;
+    margin-right: 5px;
+}
+#todoapp > table ul li:last-of-type {
+    margin-right: 0;
+}
+
+#todoapp > ul {
+    background: rgba( 0, 0, 0, .15 );
+    list-style: none;
+    text-align: right;
+    padding: 1em 10px 1em 0;
+}
+
+#todoapp > form {
+    padding: 0px;
+}
+
+#todoapp > form > div > div {
+    padding: 20px;
+    border-bottom: 1px solid rgba( 0, 0, 0, .15 );
+}
+
+#todoapp > form > div > div label {
+    text-align: right;
+    margin-right: 4em;
+}
+#todoapp > form > div > div textarea,
+#todoapp > form > div > div input {
+    vertical-align: middle;
+}
+#todoapp > form > div > div textarea {
+    width: 80%;
+    height: 70px;
+}
+
+#todoapp > form > div > div:last-of-type {
+    width: 100px;
+    margin: 0 auto;
+    border: none;
+}
+#todoapp > form button {
+    width: 100px;
+    padding: 10px;
+    background: rgba(149, 165, 166,1.0);
+    border: 1px solid rgba(127, 140, 141,1.0);
+}
