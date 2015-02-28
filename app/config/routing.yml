@@ -4,5 +4,5 @@ app:
 
 api:
     resource: "@ApiBundle/Resources/config/routing.yml"
-    prefix:   /
+    host: api.hereissheep.com
 
