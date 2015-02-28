@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Client\UserConsumer;
 use AppBundle\Form\SearchType;
+use AppBundle\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DefaultController extends Controller
@@ -14,12 +15,22 @@ class DefaultController extends Controller
         $user->sendApiRequest('http://httpbin.org/get', 'get');
 
         return $this->render('AppBundle:Default:index.html.twig', [
-            'search_form' => $this->getSearchForm()->createView()
+            'search_form' => $this->getSearchForm()->createView(),
+            'signup_form' => $this->getSignupForm()->createView()
         ]);
     }
 
     protected function getSearchForm()
     {
         return $this->createForm(new SearchType());
+    }
+
+    protected function getSignupForm()
+    {
+        return $this
+            ->createForm(new UserType())
+            ->add('Signup', 'submit', [
+                'class' => 'btn btn-success'
+            ]);
     }
 }

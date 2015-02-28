@@ -13,6 +13,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
+ * @ORM\Table(name="users")
  */
 class User
 {

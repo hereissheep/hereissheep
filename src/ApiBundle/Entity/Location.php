@@ -9,6 +9,11 @@
 namespace ApiBundle\Entity;
 
 
+/**
+ * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
+ * @ORM\Table(name="locations")
+ */
 class Location
 {
 
