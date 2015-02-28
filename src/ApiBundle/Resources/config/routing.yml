@@ -1,3 +1,4 @@
-api_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: ApiBundle:Default:index }
+api_Product:
+    path:     /{product}
+    defaults: { _controller: ApiBundle:Product:index }
+    

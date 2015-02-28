@@ -35,3 +35,9 @@
 
 ### Vagrant ###
 .vagrant/
+
+### NetBeans ###
+/nbproject/
+
+### PhpStorm ###
+.idea
