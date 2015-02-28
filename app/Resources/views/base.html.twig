@@ -1,18 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8"/>
-    <title>{% block title %}SDPHP Symfony Todo{% endblock %}</title>
-    {% block stylesheets %}{% endblock %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>{% block title %}hereissheep{% endblock %}</title>
     <link rel="icon" type="image/x-icon" href="{{ asset( 'favicon.ico' ) }}"/>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.2/sandstone/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="{{ asset( 'css/base.css' ) }}"/>
+    {% block stylesheets %}{% endblock %}
 </head>
 <body>
-<section id="todoapp">
+
+<main class="container-fluid">
     {% block body %}{% endblock %}
-</section>
-{% block javascripts %}{% endblock %}
+</main>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="{{ asset( 'js/base.js' ) }}"></script>
+{% block javascripts %}{% endblock %}
+
 </body>
 </html>
