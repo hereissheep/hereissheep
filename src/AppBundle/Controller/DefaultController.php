@@ -2,7 +2,6 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Client\UserConsumer;
 use AppBundle\Form\SearchType;
 use AppBundle\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -11,8 +10,8 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        $user = new UserConsumer($this->get('jms_serializer'));
-        $user->getUser(1);
+//        $user = new UserConsumer($this->get('jms_serializer'));
+//        $user->getUser(1);
 
         return $this->render('AppBundle:Default:index.html.twig', [
             'search_form' => $this->getSearchForm()->createView(),
@@ -30,7 +29,9 @@ class DefaultController extends Controller
         return $this
             ->createForm(new UserType())
             ->add('Signup', 'submit', [
-                'class' => 'btn btn-success'
+                'attr' => [
+                    'class' => 'btn btn-success'
+                ]
             ]);
         return $this->render('AppBundle:Default:index.html.twig');
     }

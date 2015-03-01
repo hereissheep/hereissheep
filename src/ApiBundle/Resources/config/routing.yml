@@ -2,27 +2,27 @@ api_product_create:
     path:     /product
     defaults: { _controller: ApiBundle:Product:create, _format: json }
     methods: [POST]
-    
+
 api_product_update:
     path:     /product/{id}
     defaults: { _controller: ApiBundle:Product:update, _format: json }
     methods: [PUT]
-    
+
 api_product_view:
     path:     /product/{id}
     defaults: { _controller: ApiBundle:Product:view, _format: json }
     methods: [GET]
-    
+
 api_product_search:
     path:     /product/search/{name}
     defaults: { _controller: ApiBundle:Product:search, _format: json }
     methods: [GET]
-    
+
 api_product_list_all:
     path:     /products
     defaults: { _controller: ApiBundle:Product:list, _format: json }
     methods: [GET]
-    
+
 api_product_list_by_category:
     path:     /products/category/{category}
     defaults: { _controller: ApiBundle:Product:listByCategory, _format: json }
@@ -34,12 +34,12 @@ api_category_create:
     path:     /category
     defaults: { _controller: ApiBundle:Category:create, _format: json }
     methods: [POST]
-    
+
 api_category_update:
     path:     /category/{id}
     defaults: { _controller: ApiBundle:Category:update, _format: json }
     methods: [PUT]
-    
+
 api_category_view:
     path:     /category/{id}
     defaults: { _controller: ApiBundle:Category:view, _format: json }
@@ -49,23 +49,23 @@ api_category_search:
     path:     /category/search/{name}
     defaults: { _controller: ApiBundle:Category:search, _format: json }
     methods: [GET]
-    
+
 api_category_list_all:
-    path:     /categorys
+    path:     /categories
     defaults: { _controller: ApiBundle:Category:list, _format: json }
-    
-    
+    methods: [GET]
+
 
 api_user_create:
     path:     /user
     defaults: { _controller: ApiBundle:User:create, _format: json }
     methods: [POST]
-    
+
 api_user_update:
     path:     /user/{id}
     defaults: { _controller: ApiBundle:User:update, _format: json }
     methods: [PUT]
-    
+
 api_user_view:
     path:     /user/{id}
     defaults: { _controller: ApiBundle:User:view, _format: json }
@@ -75,7 +75,8 @@ api_user_search:
     path:     /user/search/{name}
     defaults: { _controller: ApiBundle:User:search, _format: json }
     methods: [GET]
-    
+
 api_user_list_all:
     path:     /users
     defaults: { _controller: ApiBundle:User:list, _format: json }
+    methods: [GET]

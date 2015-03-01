@@ -4,7 +4,8 @@ app:
 
 api:
     resource: "@ApiBundle/Resources/config/routing.yml"
-    host: api.hereissheep.com
+    host: api.hereissheep.dev
+#    prefix: /api
 
 NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"

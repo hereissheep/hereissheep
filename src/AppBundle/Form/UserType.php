@@ -7,6 +7,7 @@
 
 namespace AppBundle\Form;
 
+use ApiBundle\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -16,22 +17,19 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username', [
+            ->add('username', 'text', [
                 'attr' => [
-                    'class'         => 'form-control',
-                    'placeholder'   => 'Full name'
+                    'placeholder' => 'Full name'
                 ]
             ])
-            ->add('email', [
+            ->add('email', 'text', [
                 'attr' => [
-                    'class'         => 'form-control',
-                    'placeholder'   => 'email@domain.com'
+                    'placeholder' => 'email@domain.com'
                 ]
             ])
-            ->add('password', [
+            ->add('password', 'password', [
                 'attr' => [
-                    'class'         => 'form-control',
-                    'placeholder'   => 'New password'
+                    'placeholder' => 'New password'
                 ]
             ]);
     }
@@ -44,7 +42,7 @@ class UserType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'ApiBundle/Entity/User'
+            'data_class' => User::class
         ]);
     }
 }

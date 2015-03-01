@@ -2,23 +2,35 @@
 
 namespace ApiBundle\Controller;
 
+use ApiBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-use \ApiBundle\Entity\User;
-
 
 class UserController extends Controller
 {
+
     /**
      * @ApiDoc{
      *  statusCodes ={
      *      200 = "",
      *      404 = ""
      *  }
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return type
+     * }
+     */
+    public function listAction(Request $request)
+    {
+        $entity = new User();
+        return new Response($this->get('jms_serializer')->serialize($entity, $request->get('_format')));
+    }
+
+    /**
+     * @ApiDoc{
+     *  statusCodes ={
+     *      200 = "",
+     *      404 = ""
+     *  }
      * }
      */
     public function createAction(Request $request)
@@ -26,15 +38,13 @@ class UserController extends Controller
         $entity = new User();
         return new Response($this->get('jms_serializer')->serialize($entity, $request->get('_format')));
     }
-    
+
     /**
      * @ApiDoc{
      *  statusCodes ={
      *      200 = "",
      *      404 = ""
      *  }
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return type
      * }
      */
     public function updateAction(Request $request)
@@ -42,53 +52,31 @@ class UserController extends Controller
         $entity = new User();
         return new Response($this->get('jms_serializer')->serialize($entity, $request->get('_format')));
     }
-    
+
     /**
      * @ApiDoc{
      *  statusCodes ={
      *      200 = "",
      *      404 = ""
      *  }
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return type
      * }
      */
     public function viewAction(Request $request)
     {
-        
+
         $entity = new User();
-        
-        
         return new Response($this->get('jms_serializer')->serialize($entity, $request->get('_format')));
     }
-    
+
     /**
      * @ApiDoc{
      *  statusCodes ={
      *      200 = "",
      *      404 = ""
      *  }
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return type
      * }
      */
     public function searchAction(Request $request)
-    {
-        $entity = new User();
-        return new Response($this->get('jms_serializer')->serialize($entity, $request->get('_format')));
-    }
-    
-    /**
-     * @ApiDoc{
-     *  statusCodes ={
-     *      200 = "",
-     *      404 = ""
-     *  }
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return type
-     * }
-     */
-    public function listAction(Request $request)
     {
         $entity = new User();
         return new Response($this->get('jms_serializer')->serialize($entity, $request->get('_format')));

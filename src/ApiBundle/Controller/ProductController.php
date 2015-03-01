@@ -17,8 +17,6 @@ class ProductController extends Controller
      *      200 = "",
      *      404 = ""
      *  }
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return type
      * }
      */
     public function createAction(Request $request)
@@ -33,8 +31,6 @@ class ProductController extends Controller
      *      200 = "Sucess",
      *      404 = "Erro"
      *  }
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return type
      * }
      */
     public function updateAction(Request $request)
@@ -49,8 +45,6 @@ class ProductController extends Controller
      *      200 = "",
      *      404 = ""
      * }
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return type
      * }
      */
     public function viewAction(Request $request)
@@ -66,8 +60,6 @@ class ProductController extends Controller
      *      200 = "",
      *      404 = ""
      *  }
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return type
      * }
      */
     public function searchAction(Request $request)
@@ -82,8 +74,6 @@ class ProductController extends Controller
      *      200 = "",
      *      404 = ""
      *  }
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return type
      * }
      */
     public function listAction(Request $request)
@@ -98,8 +88,6 @@ class ProductController extends Controller
      *      200 = "",
      *      404 = ""
      *  }
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return type
      * }
      */
     public function listByCategoryAction(Request $request)

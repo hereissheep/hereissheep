@@ -16,8 +16,6 @@ class CategoryController extends Controller
      *      200 = "",
      *      404 = ""
      *  }
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return type
      * }
      */
     public function createAction(Request $request)
@@ -32,8 +30,6 @@ class CategoryController extends Controller
      *      200 = "",
      *      404 = ""
      *  }
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return type
      * }
      */
     public function updateAction(Request $request)
@@ -48,8 +44,6 @@ class CategoryController extends Controller
      *      200 = "",
      *      404 = ""
      *  }
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return type
      * }
      */
     public function viewAction(Request $request)
@@ -66,8 +60,6 @@ class CategoryController extends Controller
      *      200 = "",
      *      404 = ""
      *  }
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return type
      * }
      */
     public function searchAction(Request $request)
@@ -82,8 +74,6 @@ class CategoryController extends Controller
      *      200 = "",
      *      404 = ""
      *  }
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return type
      * }
      */
     public function listAction(Request $request)

@@ -1,15 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: helio
- * Date: 28/02/15
- * Time: 16:36
- */
 
 namespace ApiBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
@@ -32,7 +26,7 @@ class User
     protected $username;
 
     /**
-     * 
+     *
      * @ORM\Column(type="string", name="password")
      */
     protected $password;

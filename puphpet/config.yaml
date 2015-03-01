@@ -10,7 +10,7 @@ vagrantfile-local:
         network:
             private_network: 192.168.56.103
             forwarded_port:
-                Ynb9oOoVQQqH:
+                Fd1KPFEBxymr:
                     host: '7090'
                     guest: '22'
         post_up_message: ''
@@ -32,12 +32,12 @@ vagrantfile-local:
                     - '--hiera_config /vagrant/puphpet/puppet/hiera.yaml'
                     - '--parser future'
         synced_folder:
-            0dXJ19vsTbBB:
+            vr9HuvUmN5CH:
                 owner: ''
                 group: ''
                 source: /var/www
                 target: /var/www
-                sync_type: default
+                sync_type: nfs
                 rsync:
                     args:
                         - '--verbose'
@@ -91,7 +91,7 @@ apache:
     modules:
         - rewrite
     vhosts:
-        qstxzgfye7se:
+        unclgvmkdqwq:
             servername: awesome.dev
             serveraliases:
                 - www.awesome.dev
@@ -100,7 +100,7 @@ apache:
             setenv:
                 - 'APP_ENV dev'
             directories:
-                6k3shjkj1nxs:
+                6pryymht0suc:
                     provider: directory
                     path: /var/www/awesome
                     options:
@@ -128,11 +128,11 @@ nginx:
         proxy_buffers: '4 256k'
     upstreams: {  }
     vhosts:
-        skmilfclxsrj:
+        s1tqs3faxgst:
             proxy: ''
-            server_name: dev.hereissheep.com
+            server_name: hereissheep.dev
             server_aliases:
-                - www.dev.hereissheep.com
+                - www.hereissheep.dev
             www_root: /var/www/hereissheep/web
             listen_port: '80'
             location: ^/(app|app_dev|config)\.php(/|$)
@@ -146,11 +146,11 @@ nginx:
             client_max_body_size: 1m
             ssl_cert: ''
             ssl_key: ''
-        lajdflafhakj:
+        kvd6vo9kpfyi:
             proxy: ''
-            server_name: dev.api.hereissheep.com
+            server_name: api.hereissheep.dev
             server_aliases:
-                - www.dev.api.hereissheep.com
+                - www.api.hereissheep.dev
             www_root: /var/www/hereissheep/web
             listen_port: '80'
             location: ^/(app|app_dev|config)\.php(/|$)
@@ -218,27 +218,28 @@ drush:
 ruby:
     install: '1'
     versions:
-        AVfYu3dlba02:
+        0yDicCExZvx0:
             version: ''
 nodejs:
-    install: '0'
-    npm_packages: {  }
+    install: '1'
+    npm_packages:
+        - gulp
 python:
     install: '1'
     packages: {  }
     versions:
-        M3FAnQg3LVtP:
+        Z7hcKKpeUFyw:
             version: ''
 mysql:
     install: '1'
     override_options: {  }
     root_password: '123'
-    adminer: '0'
+    adminer: 0
     databases:
-        w4HzDTX9zj1I:
+        Qzrf08VcFKt2:
             grant:
                 - ALL
-            name: symfony
+            name: hereissheep
             host: localhost
             user: admin
             password: '123'
