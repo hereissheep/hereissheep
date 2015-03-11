@@ -17,8 +17,8 @@ class Application
     protected $id;
 
     /**
-     * @var ArrayCollection
-     * @JMS\Serializer\Annotation\Type("ArrayCollection<ApiBundle\Document\User>")
+     * @var User
+     * @JMS\Serializer\Annotation\Type("ApiBundle\Document\User")
      * @ODM\ReferenceOne(targetDocument="User", inversedBy="applications")
      **/
     protected $user;
@@ -33,7 +33,7 @@ class Application
      * @JMS\Serializer\Annotation\Type("string")
      * @ODM\String
      */
-    protected $discription;
+    protected $description;
 
     /**
      * @JMS\Serializer\Annotation\Type("string")
@@ -45,7 +45,7 @@ class Application
      * @JMS\Serializer\Annotation\Type("boolean")
      * @ODM\Boolean
      */
-    protected $active;
+    protected $active = true;
 
     public function getId()
     {
@@ -60,11 +60,6 @@ class Application
     public function getName()
     {
         return $this->name;
-    }
-
-    public function getDiscription()
-    {
-        return $this->discription;
     }
 
     public function getToken()
@@ -95,12 +90,6 @@ class Application
         return $this;
     }
 
-    public function setDiscription($discription)
-    {
-        $this->discription = $discription;
-        return $this;
-    }
-
     public function setToken($token)
     {
         $this->token = $token;
@@ -110,6 +99,23 @@ class Application
     public function setActive($active)
     {
         $this->active = $active;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param mixed $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
         return $this;
     }
 }

@@ -4,15 +4,12 @@ namespace ApiBundle\Controller;
 
 use ApiBundle\Document\Application;
 use ApiBundle\Document\User;
-use FOS\RestBundle\Routing\ClassResourceInterface;
 use Symfony\Component\HttpFoundation\Request;
 
-class ApplicationController extends AbstractController implements ClassResourceInterface
+class ApplicationController extends AbstractController
 {
     /**
      * Lista todos os usuarios.
-     *
-     * @return array data
      *
      * @Nelmio\ApiDocBundle\Annotation\ApiDoc(
      *   statusCodes = {
@@ -20,12 +17,10 @@ class ApplicationController extends AbstractController implements ClassResourceI
      *   }
      * )
      */
-    public function cgetAction(Request $request)
+    public function getApplicationsAction(User $user)
     {
-        $em = $this->getDoctrine()->getManager();
-        $applications = $em->getRepository('ApiBundle:User')->findAll();
+        $applications = $user->getApplications();
         $view = $this->view($applications, 200);
-
         return $this->handleView($view);
     }
 
@@ -39,13 +34,16 @@ class ApplicationController extends AbstractController implements ClassResourceI
      *   }
      * )
      */
-    public function postAction(Request $request)
+    public function postApplicationAction(User $user, Request $request)
     {
         $application = $this->requestToEntity($request, Application::class);
-        $application->setToken($this->get('token_builder')->createToken());
+        $application
+            ->setToken($this->get('token_builder')->createToken());
+
+        $user->addApplication($application);
 
         $em = $this->getDoctrine()->getManager();
-        $em->persist($application);
+        $em->persist($user);
         $em->flush();
 
         $view = $this->view($application, 201);
@@ -63,10 +61,12 @@ class ApplicationController extends AbstractController implements ClassResourceI
      *     404 = "When a user is not found."
      *   }
      * )
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function getAction(User $user)
+    public function getAction(Application $application)
     {
-
+        $view = $this->view($application, 200);
+        return $this->handleView($view);
     }
 
     /**
@@ -81,9 +81,17 @@ class ApplicationController extends AbstractController implements ClassResourceI
      *     404 = "When a user is not found."
      *   }
      * )
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function deleteAction(User $user)
+    public function deleteAction(User $user, Application $application)
     {
+        $user->removeApplication($application);
 
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($user);
+        $em->flush();
+
+        $view = $this->view($application, 201);
+        return $this->handleView($view);
     }
 }
