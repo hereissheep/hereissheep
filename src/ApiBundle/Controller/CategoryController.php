@@ -2,16 +2,30 @@
 
 namespace ApiBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use ApiBundle\Document\Category;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-use \ApiBundle\Entity\Category;
 
-class CategoryController extends Controller
+class CategoryController extends AbstractController
 {
+
     /**
-     * @ApiDoc{
+     * @Nelmio\ApiDocBundle\Annotation\ApiDoc{
+     *  statusCodes ={
+     *      200 = "",
+     *      404 = ""
+     *  }
+     * }
+     */
+    public function listAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $categories = $em->getRepository('ApiBundle:Category')->findAll();
+        return new Response($this->get('jms_serializer')->serialize($categories, $request->get('_format')));
+    }
+
+    /**
+     * @Nelmio\ApiDocBundle\Annotation\ApiDoc{
      *  statusCodes ={
      *      200 = "",
      *      404 = ""
@@ -20,12 +34,17 @@ class CategoryController extends Controller
      */
     public function createAction(Request $request)
     {
-        $entity = new Category();
-        return new Response($this->get('jms_serializer')->serialize($entity, $request->get('_format')));
+        $entity = $this->requestToEntity($request, Category::class);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($entity);
+        $em->flush();
+
+        return new Response($this->get('jms_serializer')->serialize($entity, $request->get('_format')), Response::HTTP_CREATED);
     }
-    
+
     /**
-     * @ApiDoc{
+     * @Nelmio\ApiDocBundle\Annotation\ApiDoc{
      *  statusCodes ={
      *      200 = "",
      *      404 = ""
@@ -37,25 +56,25 @@ class CategoryController extends Controller
         $entity = new Category();
         return new Response($this->get('jms_serializer')->serialize($entity, $request->get('_format')));
     }
-    
+
     /**
-     * @ApiDoc{
+     * @Nelmio\ApiDocBundle\Annotation\ApiDoc{
      *  statusCodes ={
      *      200 = "",
      *      404 = ""
      *  }
      * }
      */
-    public function viewAction(Request $request)
+    public function viewAction(Request $request, $id)
     {
-        
-        $entity = new Category();
-        
-        return new Response($this->get('jms_serializer')->serialize($entity, $request->get('_format')));
+        $em = $this->get('doctrine_mongodb')->getManager();
+        $category = $em->getRepository('ApiBundle:Category')->find($id);
+
+        return new Response($this->get('jms_serializer')->serialize($category, $request->get('_format')));
     }
-    
+
     /**
-     * @ApiDoc{
+     * @Nelmio\ApiDocBundle\Annotation\ApiDoc{
      *  statusCodes ={
      *      200 = "",
      *      404 = ""
@@ -63,20 +82,6 @@ class CategoryController extends Controller
      * }
      */
     public function searchAction(Request $request)
-    {
-        $entity = new ApiBundle\Entity\Category();
-        return new Response($this->get('jms_serializer')->serialize($entity, $request->get('_format')));
-    }
-    
-    /**
-     * @ApiDoc{
-     *  statusCodes ={
-     *      200 = "",
-     *      404 = ""
-     *  }
-     * }
-     */
-    public function listAction(Request $request)
     {
         $entity = new Category();
         return new Response($this->get('jms_serializer')->serialize($entity, $request->get('_format')));

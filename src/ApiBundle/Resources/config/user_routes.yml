@@ -1,0 +1,8 @@
+api_user:
+    type: rest
+    resource: ApiBundle\Controller\UserController
+
+api_application:
+    type: rest
+    parent: api_user
+    resource: ApiBundle\Controller\ApplicationController

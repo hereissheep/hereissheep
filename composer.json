@@ -15,6 +15,8 @@
     "doctrine/orm": "~2.2,>=2.2.3,<2.5",
     "doctrine/dbal": "<2.5",
     "doctrine/doctrine-bundle": "~1.2",
+    "doctrine/mongodb-odm": "1.0.*@dev",
+    "doctrine/mongodb-odm-bundle": "3.0.*@dev",
     "twig/extensions": "~1.0",
     "symfony/assetic-bundle": "~2.3",
     "symfony/swiftmailer-bundle": "~2.3",
@@ -25,7 +27,9 @@
     "easyframework/collections": "~4.0@dev",
     "jms/serializer-bundle": "~0.13",
     "guzzlehttp/guzzle": "5.2.0",
-    "nelmio/api-doc-bundle": "@stable"
+    "nelmio/api-doc-bundle": "@stable",
+    "friendsofsymfony/rest-bundle": "~1.4",
+    "friendsofsymfony/user-bundle": "~2.0@dev"
   },
   "require-dev": {
     "sensio/generator-bundle": "~2.3",

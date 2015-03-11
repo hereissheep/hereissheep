@@ -10,3 +10,6 @@ api:
 NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
     prefix:   /api/docs
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

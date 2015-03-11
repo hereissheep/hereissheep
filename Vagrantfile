@@ -2,8 +2,16 @@ require 'yaml'
 
 dir = File.dirname(File.expand_path(__FILE__))
 
+require "#{dir}/puphpet/ruby/deep_merge.rb"
+
 configValues = YAML.load_file("#{dir}/puphpet/config.yaml")
-data         = configValues['vagrantfile-local']
+
+if File.file?("#{dir}/puphpet/config-custom.yaml")
+  custom = YAML.load_file("#{dir}/puphpet/config-custom.yaml")
+  configValues.deep_merge!(custom)
+end
+
+data = configValues['vagrantfile-local']
 
 Vagrant.require_version '>= 1.6.0'
 
@@ -83,7 +91,7 @@ Vagrant.configure('2') do |config|
       if folder['sync_type'] == 'nfs'
         if Vagrant.has_plugin?('vagrant-bindfs')
           config.vm.synced_folder "#{folder['source']}", "/mnt/vagrant-#{i}", id: "#{i}", type: 'nfs'
-          config.bindfs.bind_folder "/mnt/vagrant-#{i}", "#{folder['target']}", user: sync_owner, group: sync_group
+          config.bindfs.bind_folder "/mnt/vagrant-#{i}", "#{folder['target']}", owner: sync_owner, group: sync_group, perms: "u=rwX:g=rwX:o=rD"
         else
           config.vm.synced_folder "#{folder['source']}", "#{folder['target']}", id: "#{i}", type: 'nfs'
         end
@@ -235,7 +243,7 @@ Vagrant.configure('2') do |config|
   end
   config.vm.provision :shell, :path => 'puphpet/shell/important-notices.sh'
 
-  customKey  = "#{dir}/files/dot/ssh/id_rsa"
+  customKey  = "#{dir}/puphpet/files/dot/ssh/id_rsa"
   vagrantKey = "#{dir}/.vagrant/machines/default/#{ENV['VAGRANT_DEFAULT_PROVIDER']}/private_key"
 
   if File.file?(customKey)

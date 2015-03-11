@@ -10,7 +10,7 @@ vagrantfile-local:
         network:
             private_network: 192.168.56.103
             forwarded_port:
-                Fd1KPFEBxymr:
+                nHU3WqEWA8Vx:
                     host: '7090'
                     guest: '22'
         post_up_message: ''
@@ -32,7 +32,7 @@ vagrantfile-local:
                     - '--hiera_config /vagrant/puphpet/puppet/hiera.yaml'
                     - '--parser future'
         synced_folder:
-            vr9HuvUmN5CH:
+            FRwji0W30Wbv:
                 owner: ''
                 group: ''
                 source: /var/www
@@ -66,7 +66,6 @@ server:
     packages:
         - vim
         - htop
-        - php5-pgsql
         - php5-mysql
         - php5-intl
 users_groups:
@@ -78,7 +77,7 @@ cron:
     jobs: {  }
 firewall:
     install: '1'
-    rules: null
+    rules: {  }
 apache:
     install: '0'
     settings:
@@ -91,7 +90,7 @@ apache:
     modules:
         - rewrite
     vhosts:
-        unclgvmkdqwq:
+        ecjvyymonkbi:
             servername: awesome.dev
             serveraliases:
                 - www.awesome.dev
@@ -100,7 +99,7 @@ apache:
             setenv:
                 - 'APP_ENV dev'
             directories:
-                6pryymht0suc:
+                keh5x0olwpov:
                     provider: directory
                     path: /var/www/awesome
                     options:
@@ -128,7 +127,7 @@ nginx:
         proxy_buffers: '4 256k'
     upstreams: {  }
     vhosts:
-        s1tqs3faxgst:
+        otn2bxzgsbkh:
             proxy: ''
             server_name: hereissheep.dev
             server_aliases:
@@ -146,7 +145,7 @@ nginx:
             client_max_body_size: 1m
             ssl_cert: ''
             ssl_key: ''
-        kvd6vo9kpfyi:
+        ubj1c59mmwfy:
             proxy: ''
             server_name: api.hereissheep.dev
             server_aliases:
@@ -177,7 +176,7 @@ php:
             - mcrypt
         pear: {  }
         pecl:
-            - PDO_PGSQL
+            - mongo
             - redis
             - pecl_http
     ini:
@@ -218,7 +217,7 @@ drush:
 ruby:
     install: '1'
     versions:
-        0yDicCExZvx0:
+        i4EmoIzylTyM:
             version: ''
 nodejs:
     install: '1'
@@ -228,7 +227,7 @@ python:
     install: '1'
     packages: {  }
     versions:
-        Z7hcKKpeUFyw:
+        jZ6wSDFVh6A6:
             version: ''
 mysql:
     install: '1'
@@ -236,7 +235,7 @@ mysql:
     root_password: '123'
     adminer: 0
     databases:
-        Qzrf08VcFKt2:
+        c5I8FsPSOlQB:
             grant:
                 - ALL
             name: hereissheep
@@ -265,7 +264,7 @@ sqlite:
     adminer: 0
     databases: {  }
 mongodb:
-    install: '0'
+    install: '1'
     settings:
         auth: 1
         port: '27017'
@@ -296,13 +295,13 @@ beanstalkd:
     beanstalk_console: 0
     binlogdir: /var/lib/beanstalkd/binlog
 rabbitmq:
-    install: '0'
+    install: '1'
     settings:
         port: '5672'
 elastic_search:
     install: '0'
     settings:
-        version: ''
+        version: null
         java_install: true
 solr:
     install: '0'

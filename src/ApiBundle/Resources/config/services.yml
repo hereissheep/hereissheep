@@ -1,4 +1,22 @@
 services:
-#    api.example:
-#        class: ApiBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+
+  apikey_authenticator:
+      class:     'ApiBundle\Security\ApiKeyAuthenticator'
+      arguments: ['@apikey_user_provider']
+
+  apikey_user_provider:
+      class:     'ApiBundle\Security\ApiKeyUserProvider'
+      arguments: ['@doctrine.odm.mongodb.document_manager']
+
+  token_builder:
+      class:     'ApiBundle\Security\TokenBuilder'
+
+  json_entity_encoder:
+      class:     'ApiBundle\Converter\JsonToEntityConverter'
+      arguments: ['@event_dispatcher']
+
+  converter_subscriber:
+      class:     'ApiBundle\EventListener\ConverterSubscriber'
+      arguments: ['@doctrine.odm.mongodb.document_manager', '@security.encoder_factory']
+      tags:
+          - { name: kernel.event_subscriber }

@@ -1,41 +1,38 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: helio
- * Date: 28/02/15
- * Time: 16:50
- */
 
-namespace ApiBundle\Entity;
+namespace ApiBundle\Document;
 
+use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Doctrine\ORM\Mapping as ORM;
+
 /**
- * @ORM\Entity
- * @ORM\HasLifecycleCallbacks
- * @ORM\Table(name="locations")
+ * @ODM\EmbeddedDocument
+ * @ODM\HasLifecycleCallbacks
  */
 class Location
 {
 
     /**
-     * @ORM\Id
-     * @ORM\Column(type="bigint", name="location_id")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @JMS\Serializer\Annotation\Type("string")
+     * @ODM\Id
      */
     protected $id;
 
     /**
-     * @ORM\Column(type="string", name="address")
+     * @JMS\Serializer\Annotation\Type("string")
+     * @ODM\String
      */
     protected $address;
 
     /**
-     * @ORM\Column(type="string", name="latitude")
+     * @JMS\Serializer\Annotation\Type("string")
+     * @ODM\String
      */
     protected $latitude;
 
     /**
-     * @ORM\Column(type="string", name="longitude")
+     * @JMS\Serializer\Annotation\Type("string")
+     * @ODM\String
      */
     protected $longitude;
 
@@ -102,9 +99,4 @@ class Location
     {
         $this->longitude = $longitude;
     }
-
-
-
-
-
 }

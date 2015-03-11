@@ -55,28 +55,6 @@ api_category_list_all:
     defaults: { _controller: ApiBundle:Category:list, _format: json }
     methods: [GET]
 
-
-api_user_create:
-    path:     /user
-    defaults: { _controller: ApiBundle:User:create, _format: json }
-    methods: [POST]
-
-api_user_update:
-    path:     /user/{id}
-    defaults: { _controller: ApiBundle:User:update, _format: json }
-    methods: [PUT]
-
-api_user_view:
-    path:     /user/{id}
-    defaults: { _controller: ApiBundle:User:view, _format: json }
-    methods: [GET]
-
-api_user_search:
-    path:     /user/search/{name}
-    defaults: { _controller: ApiBundle:User:search, _format: json }
-    methods: [GET]
-
-api_user_list_all:
-    path:     /users
-    defaults: { _controller: ApiBundle:User:list, _format: json }
-    methods: [GET]
+api_users:
+    type:     rest
+    resource: "@ApiBundle/Resources/config/user_routes.yml"

@@ -2,17 +2,31 @@
 
 namespace ApiBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use ApiBundle\Document\Product;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-use \ApiBundle\Entity\Product;
 
 
-class ProductController extends Controller
+class ProductController extends AbstractController
 {
+
     /**
-     * @ApiDoc{
+     * @Nelmio\ApiDocBundle\Annotation\ApiDoc{
+     *  statusCodes ={
+     *      200 = "",
+     *      404 = ""
+     *  }
+     * }
+     */
+    public function listAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $products = $em->getRepository('ApiBundle:Product')->findAll();
+        return new Response($this->get('jms_serializer')->serialize($products, $request->get('_format')));
+    }
+
+    /**
+     * @Nelmio\ApiDocBundle\Annotation\ApiDoc{
      *  statusCodes ={
      *      200 = "",
      *      404 = ""
@@ -21,15 +35,23 @@ class ProductController extends Controller
      */
     public function createAction(Request $request)
     {
-        $entity = new Product();
+        $entity = $this->requestToEntity($request, Product::class);
+
+        $em = $this->getDoctrine()->getManager();
+        $category = $em->getRepository('ApiBundle:Category')->find($entity->getCategory());
+        $entity->setCategory($category);
+
+        $em->persist($entity);
+        $em->flush();
+
         return new Response($this->get('jms_serializer')->serialize($entity, $request->get('_format')));
     }
-    
+
     /**
-     * @ApiDoc{
+     * @Nelmio\ApiDocBundle\Annotation\ApiDoc{
      *  statusCodes ={
-     *      200 = "Sucess",
-     *      404 = "Erro"
+     *      200 = "",
+     *      404 = ""
      *  }
      * }
      */
@@ -38,24 +60,24 @@ class ProductController extends Controller
         $entity = new Product();
         return new Response($this->get('jms_serializer')->serialize($entity, $request->get('_format')));
     }
-    
+
     /**
-     * @ApiDoc{
-     *  statusCodes = {
+     * @Nelmio\ApiDocBundle\Annotation\ApiDoc{
+     *  statusCodes ={
      *      200 = "",
      *      404 = ""
-     * }
+     *  }
      * }
      */
     public function viewAction(Request $request)
     {
         $entity = new Product();
-        
+
         return new Response($this->get('jms_serializer')->serialize($entity, $request->get('_format')));
     }
-    
+
     /**
-     * @ApiDoc{
+     * @Nelmio\ApiDocBundle\Annotation\ApiDoc{
      *  statusCodes ={
      *      200 = "",
      *      404 = ""
@@ -67,23 +89,9 @@ class ProductController extends Controller
         $entity = new Product();
         return new Response($this->get('jms_serializer')->serialize($entity, $request->get('_format')));
     }
-    
+
     /**
-     * @ApiDoc{
-     *  statusCodes ={
-     *      200 = "",
-     *      404 = ""
-     *  }
-     * }
-     */
-    public function listAction(Request $request)
-    {
-        $entity = new Product();
-        return new Response($this->get('jms_serializer')->serialize($entity, $request->get('_format')));
-    }
-    
-    /**
-     * @ApiDoc{
+     * @Nelmio\ApiDocBundle\Annotation\ApiDoc{
      *  statusCodes ={
      *      200 = "",
      *      404 = ""

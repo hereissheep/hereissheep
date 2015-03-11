@@ -1,74 +1,62 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: helio
- * Date: 28/02/15
- * Time: 16:02
- */
 
-namespace ApiBundle\Entity;
+namespace ApiBundle\Document;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity
- * @ORM\HasLifecycleCallbacks
- * @ORM\Table(name="products")
+ * @ODM\Document(collection="products")
+ * @ODM\HasLifecycleCallbacks
  */
 class Product
 {
 
     /**
-     * @ORM\Id
-     * @ORM\Column(type="bigint", name="product_id")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @JMS\Serializer\Annotation\Type("string")
+     * @ODM\Id
      */
     protected $id;
 
     /**
-     * @ORM\Column(type="string", name="description")
+     * @JMS\Serializer\Annotation\Type("string")
+     * @ODM\String
      */
     protected $description;
 
     /**
      * @var Category
-     *
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="category")
-     * @ORM\JoinColumn(name="category_id", referencedColumnName="product_id")
+     * @JMS\Serializer\Annotation\Type("string")
+     * @ODM\ReferenceOne(targetDocument="Category", inversedBy="products")
      */
     protected $category;
 
     /**
-     * @var ArrayCollection
-     * @ORM\ManyToMany(targetEntity="User", inversedBy="products")
-     * @ORM\JoinTable(name="products_users")
+     * @var User
+     * @JMS\Serializer\Annotation\Type("ApiBundle\Document\User")
+     * @ODM\ReferenceOne(targetDocument="User", inversedBy="products")
      **/
-    protected $users;
+    protected $user;
 
     /**
-     * @var Location
-     *
-     * @ORM\OneToOne(targetEntity="Location", mappedBy="location")
-     * @ORM\JoinColumn(name="location_id", referencedColumnName="product_id")
+     * @JMS\Serializer\Annotation\Type("ApiBundle\Document\Location")
+     * @ODM\EmbedOne(targetDocument="Location")
      */
     protected $location;
 
     /**
-     * @ORM\Column(type="date", name="date")
+     * @JMS\Serializer\Annotation\Type("DateTime")
+     * @ODM\Date
      */
-    protected $date;
+    protected $createdAt;
 
     /**
-     * @ORM\Column(type="decimal", name="price")
+     * @JMS\Serializer\Annotation\Type("float")
+     * @ODM\Float
      */
     protected $price;
-
-    public function __construct()
-    {
-        $this->users = new ArrayCollection();
-    }
 
     /**
      * @return mixed
@@ -80,10 +68,12 @@ class Product
 
     /**
      * @param mixed $id
+     * @return $this
      */
     public function setId($id)
     {
         $this->id = $id;
+        return $this;
     }
 
     /**
@@ -96,10 +86,12 @@ class Product
 
     /**
      * @param mixed $description
+     * @return $this
      */
     public function setDescription($description)
     {
         $this->description = $description;
+        return $this;
     }
 
     /**
@@ -112,10 +104,12 @@ class Product
 
     /**
      * @param Category $category
+     * @return $this
      */
     public function setCategory($category)
     {
         $this->category = $category;
+        return $this;
     }
 
     /**
@@ -128,10 +122,12 @@ class Product
 
     /**
      * @param mixed $users
+     * @return $this
      */
     public function setUsers($users)
     {
         $this->users = $users;
+        return $this;
     }
 
     /**
@@ -144,26 +140,12 @@ class Product
 
     /**
      * @param Location $location
+     * @return $this
      */
     public function setLocation($location)
     {
         $this->location = $location;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDate()
-    {
-        return $this->date;
-    }
-
-    /**
-     * @param mixed $date
-     */
-    public function setDate($date)
-    {
-        $this->date = $date;
+        return $this;
     }
 
     /**
@@ -176,11 +158,30 @@ class Product
 
     /**
      * @param mixed $price
+     * @return $this
      */
     public function setPrice($price)
     {
         $this->price = $price;
+        return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param mixed $createdAt
+     * @return $this
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+        return $this;
+    }
 
 }

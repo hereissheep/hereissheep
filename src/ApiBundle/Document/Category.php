@@ -1,41 +1,35 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: helio
- * Date: 28/02/15
- * Time: 16:02
- */
 
-namespace ApiBundle\Entity;
+namespace ApiBundle\Document;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
-* @ORM\Entity
-* @ORM\HasLifecycleCallbacks
-* @ORM\Table(name="categorys")
-*/
+ * @ODM\Document(collection="categories")
+ * @ODM\HasLifecycleCallbacks
+ */
 class Category
 {
 
     /**
-     * @ORM\Id
-     * @ORM\Column(type="bigint", name="category_id")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @JMS\Serializer\Annotation\Type("string")
+     * @ODM\Id
      */
     protected $id;
 
     /**
-     * @ORM\Column(type="string", name="description")
+     * @JMS\Serializer\Annotation\Type("string")
+     * @ODM\String
      */
     protected $description;
 
     /**
      * @var ArrayCollection
-     *
-     * @ORM\OneToMany(targetEntity="Product", mappedBy="category")
+     * @JMS\Serializer\Annotation\Type("ArrayCollection<Product>")
+     * @ODM\ReferenceMany(targetDocument="Product", mappedBy="category")
      */
     protected $products;
 
@@ -54,6 +48,7 @@ class Category
 
     /**
      * @param mixed $id
+     * @return $this
      */
     public function setId($id)
     {
@@ -71,11 +66,11 @@ class Category
 
     /**
      * @param mixed $description
+     * @return $this
      */
     public function setDescription($description)
     {
         $this->description = $description;
         return $this;
     }
-
 }
