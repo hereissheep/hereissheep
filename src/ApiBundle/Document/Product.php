@@ -2,7 +2,6 @@
 
 namespace ApiBundle\Document;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -10,6 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ODM\Document(collection="products")
  * @ODM\HasLifecycleCallbacks
+ * @ODM\Index(keys={"location"="2d"})
  */
 class Product
 {
@@ -45,6 +45,12 @@ class Product
      * @ODM\EmbedOne(targetDocument="Location")
      */
     protected $location;
+
+    /**
+     * @JMS\Serializer\Annotation\Type("string")
+     * @ODM\Distance
+     */
+    protected $distance;
 
     /**
      * @JMS\Serializer\Annotation\Type("DateTime")
@@ -113,24 +119,6 @@ class Product
     }
 
     /**
-     * @return mixed
-     */
-    public function getUsers()
-    {
-        return $this->users;
-    }
-
-    /**
-     * @param mixed $users
-     * @return $this
-     */
-    public function setUsers($users)
-    {
-        $this->users = $users;
-        return $this;
-    }
-
-    /**
      * @return Location
      */
     public function getLocation()
@@ -184,4 +172,37 @@ class Product
         return $this;
     }
 
+    /**
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param User $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDistance()
+    {
+        return $this->distance;
+    }
+
+    /**
+     * @param mixed $distance
+     */
+    public function setDistance($distance)
+    {
+        $this->distance = $distance;
+        return $this;
+    }
 }

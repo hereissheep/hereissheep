@@ -14,18 +14,6 @@ class Location
 
     /**
      * @JMS\Serializer\Annotation\Type("string")
-     * @ODM\Id
-     */
-    protected $id;
-
-    /**
-     * @JMS\Serializer\Annotation\Type("string")
-     * @ODM\String
-     */
-    protected $address;
-
-    /**
-     * @JMS\Serializer\Annotation\Type("string")
      * @ODM\String
      */
     protected $latitude;
@@ -35,38 +23,6 @@ class Location
      * @ODM\String
      */
     protected $longitude;
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getAddress()
-    {
-        return $this->address;
-    }
-
-    /**
-     * @param mixed $address
-     */
-    public function setAddress($address)
-    {
-        $this->address = $address;
-    }
 
     /**
      * @return mixed
@@ -82,6 +38,7 @@ class Location
     public function setLatitude($latitude)
     {
         $this->latitude = $latitude;
+        return $this;
     }
 
     /**
@@ -98,5 +55,6 @@ class Location
     public function setLongitude($longitude)
     {
         $this->longitude = $longitude;
+        return $this;
     }
 }
