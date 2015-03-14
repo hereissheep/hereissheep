@@ -12,46 +12,48 @@ class CategoryController extends AbstractController
     /**
      * @Nelmio\ApiDocBundle\Annotation\ApiDoc{
      *  statusCodes ={
-     *      200 = "",
-     *      404 = ""
+     *     200 = "When a request is completed.",
+     *     404 = "When a category is not found."
      *  }
      * }
      */
-    public function listAction(Request $request)
+    public function getCategoriesAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $categories = $em->getRepository('ApiBundle:Category')->findAll();
-        return new Response($this->get('jms_serializer')->serialize($categories, $request->get('_format')));
+        $view = $this->view($categories, Response::HTTP_OK);
+        return $this->handleView($view);
     }
 
     /**
      * @Nelmio\ApiDocBundle\Annotation\ApiDoc{
      *  statusCodes ={
-     *      200 = "",
-     *      404 = ""
+     *     200 = "When a request is completed.",
+     *     201 = "When the category is created."
      *  }
      * }
      */
-    public function createAction(Request $request)
+    public function postCategoryAction(Request $request)
     {
-        $entity = $this->requestToEntity($request, Category::class);
+        $category = $this->requestToEntity($request, Category::class);
 
         $em = $this->getDoctrine()->getManager();
-        $em->persist($entity);
+        $em->persist($category);
         $em->flush();
 
-        return new Response($this->get('jms_serializer')->serialize($entity, $request->get('_format')), Response::HTTP_CREATED);
+        $view = $this->view($category, Response::HTTP_CREATED);
+        return $this->handleView($view);
     }
 
     /**
      * @Nelmio\ApiDocBundle\Annotation\ApiDoc{
      *  statusCodes ={
-     *      200 = "",
-     *      404 = ""
+     *     200 = "When a request is completed.",
+     *     404 = "When a category is not found."
      *  }
      * }
      */
-    public function updateAction(Request $request)
+    public function putCategoryAction(Request $request)
     {
         $entity = new Category();
         return new Response($this->get('jms_serializer')->serialize($entity, $request->get('_format')));
@@ -60,30 +62,32 @@ class CategoryController extends AbstractController
     /**
      * @Nelmio\ApiDocBundle\Annotation\ApiDoc{
      *  statusCodes ={
-     *      200 = "",
-     *      404 = ""
+     *     200 = "When a request is completed.",
+     *     404 = "When a category is not found."
      *  }
      * }
      */
-    public function viewAction(Request $request, $id)
+    public function getCategoryAction(Request $request, Category $category)
     {
-        $em = $this->get('doctrine_mongodb')->getManager();
-        $category = $em->getRepository('ApiBundle:Category')->find($id);
-
-        return new Response($this->get('jms_serializer')->serialize($category, $request->get('_format')));
+        $view = $this->view($category, Response::HTTP_OK);
+        return $this->handleView($view);
     }
 
     /**
      * @Nelmio\ApiDocBundle\Annotation\ApiDoc{
      *  statusCodes ={
-     *      200 = "",
-     *      404 = ""
+     *     204 = "When a request is completed.",
+     *     404 = "When a category is not found."
      *  }
      * }
      */
-    public function searchAction(Request $request)
+    public function deleteCategoryAction(Request $request, Category $category)
     {
-        $entity = new Category();
-        return new Response($this->get('jms_serializer')->serialize($entity, $request->get('_format')));
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($category);
+        $em->flush();
+
+        $view = $this->view(null, Response::HTTP_NO_CONTENT);
+        return $this->handleView($view);
     }
 }

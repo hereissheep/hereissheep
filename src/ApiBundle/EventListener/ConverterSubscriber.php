@@ -3,6 +3,7 @@
 namespace ApiBundle\EventListener;
 
 
+use ApiBundle\Document\Location;
 use ApiBundle\Event\ConverterEvents;
 use ApiBundle\Event\OnSetValueEvent;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -67,6 +68,12 @@ class ConverterSubscriber implements EventSubscriberInterface
                 $password = $encoder->encodePassword($object->getPassword(), $object->getSalt());
                 $object->setPassword($password);
                 break;
+            case 'location':
+                $values = $event->getValue();
+                $location = new Location();
+                $location->setLatitude($values->latitude)
+                    ->setLongitude($values->longitude);
+                $object->setLocation($location);
         }
         $event->setObject($object);
     }

@@ -13,13 +13,11 @@ class Location
 {
 
     /**
-     * @JMS\Serializer\Annotation\Type("string")
      * @ODM\String
      */
     protected $latitude;
 
     /**
-     * @JMS\Serializer\Annotation\Type("string")
      * @ODM\String
      */
     protected $longitude;
@@ -34,6 +32,7 @@ class Location
 
     /**
      * @param mixed $latitude
+     * @return $this
      */
     public function setLatitude($latitude)
     {
@@ -51,6 +50,7 @@ class Location
 
     /**
      * @param mixed $longitude
+     * @return $this
      */
     public function setLongitude($longitude)
     {

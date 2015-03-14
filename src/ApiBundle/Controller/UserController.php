@@ -5,11 +5,12 @@ namespace ApiBundle\Controller;
 use ApiBundle\Document\User;
 use FOS\RestBundle\Routing\ClassResourceInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends AbstractController implements ClassResourceInterface
 {
     /**
-     * Lista todos os usuarios.
+     * List all users.
      *
      * @return array data
      *
@@ -24,12 +25,12 @@ class UserController extends AbstractController implements ClassResourceInterfac
         $em = $this->getDoctrine()->getManager();
         $users = $em->getRepository('ApiBundle:User')->findAll();
 
-        $view = $this->view($users, 200);
+        $view = $this->view($users, Response::HTTP_OK);
         return $this->handleView($view);
     }
 
     /**
-     * Cria um novo usuario.
+     * Creates a new user.
      *
      * @Nelmio\ApiDocBundle\Annotation\ApiDoc(
      *   statusCodes = {
@@ -45,12 +46,12 @@ class UserController extends AbstractController implements ClassResourceInterfac
         $em->persist($user);
         $em->flush();
 
-        $view = $this->view($user, 201);
+        $view = $this->view($user, Response::HTTP_CREATED);
         return $this->handleView($view);
     }
 
     /**
-     * Recupera um usuario.
+     * Retrieves an user.
      *
      * @param User $user O objeto de usuário
      * @Nelmio\ApiDocBundle\Annotation\ApiDoc(
@@ -63,19 +64,19 @@ class UserController extends AbstractController implements ClassResourceInterfac
      */
     public function getAction(User $user)
     {
-        $view = $this->view($user, 200);
+        $view = $this->view($user, Response::HTTP_OK);
         return $this->handleView($view);
     }
 
     /**
-     * Exclui um usuario do sistema.
+     * Remove an user.
      *
      * @param User $user O objeto de boleto
      *
      * @Nelmio\ApiDocBundle\Annotation\ApiDoc(
      *   statusCodes = {
      *     200 = "When a request is completed.",
-     *     201 = "When the user is deleted.",
+     *     204 = "When the user is deleted.",
      *     404 = "When a user is not found."
      *   }
      * )
@@ -87,7 +88,7 @@ class UserController extends AbstractController implements ClassResourceInterfac
         $em->remove($user);
         $em->flush();
 
-        $view = $this->view($user, 201);
+        $view = $this->view(null, Response::HTTP_NO_CONTENT);
         return $this->handleView($view);
     }
 }

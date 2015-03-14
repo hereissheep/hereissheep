@@ -1,0 +1,3 @@
+api_products:
+    type: rest
+    resource: ApiBundle\Controller\CategoryController

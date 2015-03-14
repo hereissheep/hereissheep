@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
             new FOS\RestBundle\FOSRestBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new Liip\MonitorBundle\LiipMonitorBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

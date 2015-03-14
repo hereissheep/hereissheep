@@ -5,11 +5,12 @@ namespace ApiBundle\Controller;
 use ApiBundle\Document\Application;
 use ApiBundle\Document\User;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class ApplicationController extends AbstractController
 {
     /**
-     * Lista todos os usuarios.
+     * List all user's applications.
      *
      * @Nelmio\ApiDocBundle\Annotation\ApiDoc(
      *   statusCodes = {
@@ -20,12 +21,12 @@ class ApplicationController extends AbstractController
     public function getApplicationsAction(User $user)
     {
         $applications = $user->getApplications();
-        $view = $this->view($applications, 200);
+        $view = $this->view($applications, Response::HTTP_OK);
         return $this->handleView($view);
     }
 
     /**
-     * Cria um novo usuario.
+     * Creates an applications for a user.
      *
      * @Nelmio\ApiDocBundle\Annotation\ApiDoc(
      *   statusCodes = {
@@ -46,12 +47,12 @@ class ApplicationController extends AbstractController
         $em->persist($user);
         $em->flush();
 
-        $view = $this->view($application, 201);
+        $view = $this->view($application, Response::HTTP_CREATED);
         return $this->handleView($view);
     }
 
     /**
-     * Recupera um usuario.
+     * Retrieves an user's application.
      *
      * @param User $user O objeto de boleto
      *
@@ -63,35 +64,35 @@ class ApplicationController extends AbstractController
      * )
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function getAction(Application $application)
+    public function getApplicationAction(Application $application)
     {
-        $view = $this->view($application, 200);
+        $view = $this->view($application, Response::HTTP_OK);
         return $this->handleView($view);
     }
 
     /**
-     * Exclui um usuario do sistema.
+     * Removes an user's application.
      *
      * @param User $user O objeto de boleto
      *
      * @Nelmio\ApiDocBundle\Annotation\ApiDoc(
      *   statusCodes = {
      *     200 = "When a request is completed.",
-     *     201 = "When the user is deleted.",
+     *     204 = "When the user is deleted.",
      *     404 = "When a user is not found."
      *   }
      * )
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function deleteAction(User $user, Application $application)
+    public function deleteApplicationAction(User $user, Application $application)
     {
         $user->removeApplication($application);
 
         $em = $this->getDoctrine()->getManager();
-        $em->persist($user);
+        $em->remove($user);
         $em->flush();
 
-        $view = $this->view($application, 201);
+        $view = $this->view(null, Response::HTTP_NO_CONTENT);
         return $this->handleView($view);
     }
 }

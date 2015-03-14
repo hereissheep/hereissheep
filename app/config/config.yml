@@ -88,9 +88,21 @@ swiftmailer:
 sensio_framework_extra:
     request: { converters: true }
 
+jms_serializer:
+    metadata:
+        directories:
+            FOSUserBundle:
+                path: "%kernel.root_dir%/Resources/FOSUserBundle/serializer"
+                namespace_prefix: "FOS\\UserBundle"
+            ApiBundle:
+                path: "%kernel.root_dir%/../src/ApiBundle/Resources/serializer"
+                namespace_prefix: "ApiBundle"
+
 nelmio_api_doc: ~
 
 fos_rest:
+    access_denied_listener:
+        json: true
     exception:
         enabled: true
     body_converter:
@@ -104,3 +116,8 @@ fos_user:
     db_driver: mongodb
     firewall_name: main
     user_class: ApiBundle\Document\User
+
+liip_monitor:
+    enable_controller: true
+    checks:
+        php_extensions: [redis, curl, intl]

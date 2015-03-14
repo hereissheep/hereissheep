@@ -15,20 +15,17 @@ class Category
 {
 
     /**
-     * @JMS\Serializer\Annotation\Type("string")
      * @ODM\Id
      */
     protected $id;
 
     /**
-     * @JMS\Serializer\Annotation\Type("string")
      * @ODM\String
      */
     protected $description;
 
     /**
      * @var ArrayCollection
-     * @JMS\Serializer\Annotation\Type("ArrayCollection<Product>")
      * @ODM\ReferenceMany(targetDocument="Product", mappedBy="category")
      */
     protected $products;
@@ -72,5 +69,28 @@ class Category
     {
         $this->description = $description;
         return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getProducts()
+    {
+        return $this->products;
+    }
+
+    /**
+     * @param ArrayCollection $products
+     * @return $this
+     */
+    public function setProducts($products)
+    {
+        $this->products = $products;
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->description;
     }
 }

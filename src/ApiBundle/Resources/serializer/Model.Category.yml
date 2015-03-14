@@ -1,0 +1,9 @@
+ApiBundle\Document\Category:
+    exclusion_policy: NONE
+    properties:
+        id:
+          type: string
+        description:
+          type: string
+        products:
+          type: ApiBundle\Document\Product

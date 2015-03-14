@@ -1,0 +1,7 @@
+ApiBundle\Document\Location:
+    exclusion_policy: NONE
+    properties:
+        latitude:
+          type: string
+        longitude:
+          type: string

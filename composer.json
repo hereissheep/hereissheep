@@ -29,7 +29,8 @@
     "guzzlehttp/guzzle": "5.2.0",
     "nelmio/api-doc-bundle": "@stable",
     "friendsofsymfony/rest-bundle": "~1.4",
-    "friendsofsymfony/user-bundle": "~2.0@dev"
+    "friendsofsymfony/user-bundle": "~2.0@dev",
+    "liip/monitor-bundle": "~2.0"
   },
   "require-dev": {
     "sensio/generator-bundle": "~2.3",

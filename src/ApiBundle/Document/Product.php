@@ -15,51 +15,43 @@ class Product
 {
 
     /**
-     * @JMS\Serializer\Annotation\Type("string")
      * @ODM\Id
      */
     protected $id;
 
     /**
-     * @JMS\Serializer\Annotation\Type("string")
      * @ODM\String
      */
     protected $description;
 
     /**
      * @var Category
-     * @JMS\Serializer\Annotation\Type("string")
-     * @ODM\ReferenceOne(targetDocument="Category", inversedBy="products")
+     * @ODM\ReferenceOne(targetDocument="Category", inversedBy="products", cascade={"persist"})
      */
     protected $category;
 
     /**
      * @var User
-     * @JMS\Serializer\Annotation\Type("ApiBundle\Document\User")
-     * @ODM\ReferenceOne(targetDocument="User", inversedBy="products")
+     * @ODM\ReferenceOne(targetDocument="User", inversedBy="products", cascade={"persist"})
      **/
     protected $user;
 
     /**
-     * @JMS\Serializer\Annotation\Type("ApiBundle\Document\Location")
      * @ODM\EmbedOne(targetDocument="Location")
      */
     protected $location;
 
     /**
-     * @JMS\Serializer\Annotation\Type("string")
      * @ODM\Distance
      */
     protected $distance;
 
     /**
-     * @JMS\Serializer\Annotation\Type("DateTime")
      * @ODM\Date
      */
     protected $createdAt;
 
     /**
-     * @JMS\Serializer\Annotation\Type("float")
      * @ODM\Float
      */
     protected $price;
@@ -182,6 +174,7 @@ class Product
 
     /**
      * @param User $user
+     * @return $this
      */
     public function setUser($user)
     {
@@ -199,6 +192,7 @@ class Product
 
     /**
      * @param mixed $distance
+     * @return $this
      */
     public function setDistance($distance)
     {

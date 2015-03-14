@@ -1,0 +1,15 @@
+ApiBundle\Document\Application:
+    exclusion_policy: NONE
+    properties:
+        id:
+          type: string
+        user:
+          type: ApiBundle\Document\User
+        name:
+          type: string
+        description:
+          type: string
+        token:
+          type: string
+        active:
+          type: boolean

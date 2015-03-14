@@ -1,0 +1,19 @@
+ApiBundle\Document\Product:
+    exclusion_policy: NONE
+    properties:
+        id:
+          type: string
+        description:
+          type: string
+        category:
+          type: ApiBundle\Document\Category
+        user:
+          type: ApiBundle\Document\User
+        location:
+          type: ApiBundle\Document\Location
+        distance:
+          type: string
+        createdAt:
+          type: DateTime
+        price:
+          type: float

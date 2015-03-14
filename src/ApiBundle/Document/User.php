@@ -19,22 +19,13 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * Encrypted password. Must be persisted.
-     * @JMS\Serializer\Annotation\Exclude
-     * @var string
-     */
-    protected $password;
-
-    /**
      * @var ArrayCollection
-     * @JMS\Serializer\Annotation\Type("ArrayCollection<Product>")
-     * @ODM\ReferenceMany(targetDocument="Product", mappedBy="user")
+     * @ODM\ReferenceMany(targetDocument="Product", mappedBy="user", cascade={"persist"})
      **/
     protected $products;
 
     /**
      * @var ArrayCollection
-     * @JMS\Serializer\Annotation\Type("ArrayCollection<Application>")
      * @ODM\ReferenceMany(targetDocument="Application", mappedBy="user", cascade={"persist"})
      **/
     protected $applications;
@@ -55,6 +46,7 @@ class User extends BaseUser
 
     /**
      * @param ArrayCollection $products
+     * @return $this
      */
     public function setProducts($products)
     {
@@ -72,10 +64,24 @@ class User extends BaseUser
 
     /**
      * @param ArrayCollection $applications
+     * @return $this
      */
     public function setApplications($applications)
     {
         $this->applications = $applications;
+        return $this;
+    }
+
+    public function addProduct(Product $product)
+    {
+        $product->setUser($this);
+        $this->products->add($product);
+        return $this;
+    }
+
+    public function removeProduct(Product $product)
+    {
+        $this->products->remove($product);
         return $this;
     }
 

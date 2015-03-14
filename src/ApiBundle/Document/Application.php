@@ -11,38 +11,32 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 class Application
 {
     /**
-     * @JMS\Serializer\Annotation\Type("string")
      * @ODM\Id
      */
     protected $id;
 
     /**
      * @var User
-     * @JMS\Serializer\Annotation\Type("ApiBundle\Document\User")
      * @ODM\ReferenceOne(targetDocument="User", inversedBy="applications")
      **/
     protected $user;
 
     /**
-     * @JMS\Serializer\Annotation\Type("string")
      * @ODM\String
      */
     protected $name;
 
     /**
-     * @JMS\Serializer\Annotation\Type("string")
      * @ODM\String
      */
     protected $description;
 
     /**
-     * @JMS\Serializer\Annotation\Type("string")
      * @ODM\String
      */
     protected $token;
 
     /**
-     * @JMS\Serializer\Annotation\Type("boolean")
      * @ODM\Boolean
      */
     protected $active = true;

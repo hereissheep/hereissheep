@@ -1,59 +1,10 @@
-api_product_create:
-    path:     /product
-    defaults: { _controller: ApiBundle:Product:create, _format: json }
-    methods: [POST]
+api_products:
+    type:     rest
+    resource: "@ApiBundle/Resources/config/products_routes.yml"
 
-api_product_update:
-    path:     /product/{id}
-    defaults: { _controller: ApiBundle:Product:update, _format: json }
-    methods: [PUT]
-
-api_product_view:
-    path:     /product/{id}
-    defaults: { _controller: ApiBundle:Product:view, _format: json }
-    methods: [GET]
-
-api_product_search:
-    path:     /product/search/{name}
-    defaults: { _controller: ApiBundle:Product:search, _format: json }
-    methods: [GET]
-
-api_product_list_all:
-    path:     /products
-    defaults: { _controller: ApiBundle:Product:list, _format: json }
-    methods: [GET]
-
-api_product_list_by_category:
-    path:     /products/category/{category}
-    defaults: { _controller: ApiBundle:Product:listByCategory, _format: json }
-    methods: [GET]
-
-
-
-api_category_create:
-    path:     /category
-    defaults: { _controller: ApiBundle:Category:create, _format: json }
-    methods: [POST]
-
-api_category_update:
-    path:     /category/{id}
-    defaults: { _controller: ApiBundle:Category:update, _format: json }
-    methods: [PUT]
-
-api_category_view:
-    path:     /category/{id}
-    defaults: { _controller: ApiBundle:Category:view, _format: json }
-    methods: [GET]
-
-api_category_search:
-    path:     /category/search/{name}
-    defaults: { _controller: ApiBundle:Category:search, _format: json }
-    methods: [GET]
-
-api_category_list_all:
-    path:     /categories
-    defaults: { _controller: ApiBundle:Category:list, _format: json }
-    methods: [GET]
+api_categories:
+    type:     rest
+    resource: "@ApiBundle/Resources/config/categories_routes.yml"
 
 api_users:
     type:     rest
