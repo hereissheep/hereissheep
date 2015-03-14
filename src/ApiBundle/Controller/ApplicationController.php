@@ -35,7 +35,7 @@ class ApplicationController extends AbstractController
      *   }
      * )
      */
-    public function postApplicationAction(User $user, Request $request)
+    public function postApplicationAction(Request $request, User $user)
     {
         $application = $this->requestToEntity($request, Application::class);
         $application
@@ -48,6 +48,27 @@ class ApplicationController extends AbstractController
         $em->flush();
 
         $view = $this->view($application, Response::HTTP_CREATED);
+        return $this->handleView($view);
+    }
+
+    /**
+     * Creates an applications for a user.
+     *
+     * @Nelmio\ApiDocBundle\Annotation\ApiDoc(
+     *   statusCodes = {
+     *     200 = "When a request is completed.",
+     *     201 = "When the user is created."
+     *   }
+     * )
+     */
+    public function putApplicationAction(Request $request, User $user, Application $application)
+    {
+        $application = $this->requestToEntity($request, $application);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($application);
+        $em->flush();
+
+        $view = $this->view($application, Response::HTTP_OK);
         return $this->handleView($view);
     }
 

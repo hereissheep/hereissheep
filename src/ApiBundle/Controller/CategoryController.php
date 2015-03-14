@@ -10,6 +10,7 @@ class CategoryController extends AbstractController
 {
 
     /**
+     * List all categories.
      * @Nelmio\ApiDocBundle\Annotation\ApiDoc{
      *  statusCodes ={
      *     200 = "When a request is completed.",
@@ -26,6 +27,7 @@ class CategoryController extends AbstractController
     }
 
     /**
+     * Adds a category.
      * @Nelmio\ApiDocBundle\Annotation\ApiDoc{
      *  statusCodes ={
      *     200 = "When a request is completed.",
@@ -46,6 +48,7 @@ class CategoryController extends AbstractController
     }
 
     /**
+     * Updates a category.
      * @Nelmio\ApiDocBundle\Annotation\ApiDoc{
      *  statusCodes ={
      *     200 = "When a request is completed.",
@@ -53,13 +56,20 @@ class CategoryController extends AbstractController
      *  }
      * }
      */
-    public function putCategoryAction(Request $request)
+    public function putCategoryAction(Request $request, Category $category)
     {
-        $entity = new Category();
-        return new Response($this->get('jms_serializer')->serialize($entity, $request->get('_format')));
+        $category = $this->requestToEntity($request, $category);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($category);
+        $em->flush();
+
+        $view = $this->view($category, Response::HTTP_OK);
+        return $this->handleView($view);
     }
 
     /**
+     * Gets a category.
      * @Nelmio\ApiDocBundle\Annotation\ApiDoc{
      *  statusCodes ={
      *     200 = "When a request is completed.",
@@ -74,6 +84,7 @@ class CategoryController extends AbstractController
     }
 
     /**
+     * Removes a category.
      * @Nelmio\ApiDocBundle\Annotation\ApiDoc{
      *  statusCodes ={
      *     204 = "When a request is completed.",

@@ -17,8 +17,7 @@ class ProductController extends AbstractController
      *
      * @Nelmio\ApiDocBundle\Annotation\ApiDoc{
      *  statusCodes ={
-     *      200 = "",
-     *      404 = ""
+     *     200 = "When a request is completed."
      *  }
      * }
      */
@@ -36,8 +35,8 @@ class ProductController extends AbstractController
      *
      * @Nelmio\ApiDocBundle\Annotation\ApiDoc{
      *  statusCodes ={
-     *      200 = "",
-     *      404 = ""
+     *     201 = "When a request is completed.",
+     *     404 = "When a product is not found."
      *  }
      * }
      */
@@ -60,15 +59,21 @@ class ProductController extends AbstractController
      *
      * @Nelmio\ApiDocBundle\Annotation\ApiDoc{
      *  statusCodes ={
-     *      200 = "",
-     *      404 = ""
+     *     200 = "When a request is completed.",
+     *     404 = "When a product is not found."
      *  }
      * }
      */
     public function putProductAction(Request $request, Product $product)
     {
-        $entity = new Product();
-        return new Response($this->get('jms_serializer')->serialize($entity, $request->get('_format')));
+        $product = $this->requestToEntity($request, $product);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($product);
+        $em->flush();
+
+        $view = $this->view($product, Response::HTTP_OK);
+        return $this->handleView($view);
     }
 
     /**
@@ -76,8 +81,8 @@ class ProductController extends AbstractController
      *
      * @Nelmio\ApiDocBundle\Annotation\ApiDoc{
      *  statusCodes ={
-     *      200 = "",
-     *      404 = ""
+     *     200 = "When a request is completed.",
+     *     404 = "When a product is not found."
      *  }
      * }
      */
@@ -91,8 +96,8 @@ class ProductController extends AbstractController
      * Gets a product by category.
      * @Nelmio\ApiDocBundle\Annotation\ApiDoc{
      *  statusCodes ={
-     *      200 = "",
-     *      404 = ""
+     *     200 = "When a request is completed.",
+     *     404 = "When a product is not found."
      *  }
      * }
      */
@@ -106,8 +111,8 @@ class ProductController extends AbstractController
      * Gets a product by user.
      * @Nelmio\ApiDocBundle\Annotation\ApiDoc{
      *  statusCodes ={
-     *      200 = "",
-     *      404 = ""
+     *     200 = "When a request is completed.",
+     *     404 = "When a product is not found."
      *  }
      * }
      * @param Request $request
@@ -121,6 +126,8 @@ class ProductController extends AbstractController
     }
 
     /**
+     * Removes a product.
+     *
      * @Nelmio\ApiDocBundle\Annotation\ApiDoc{
      *  statusCodes ={
      *     204 = "When a request is completed.",
